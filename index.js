@@ -10,7 +10,7 @@ const port = process.env.PORT || 4000;
 const pool = new Pool({
   connectionString: 'postgresql://arbadev_bbdd_user:uq46I0SHrGj5RyS51zMLwRt5I1FsmN83@dpg-cvr83jogjchc73bp9a00-a.oregon-postgres.render.com/arbadev_bbdd',
   ssl: {
-    rejectUnauthorized: false,
+    rejectUnauthorized: false, // Esto es necesario para evitar errores de certificado en entornos de producción
   },
 });
 
