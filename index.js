@@ -1,14 +1,15 @@
 import express from 'express';
 import cors from 'cors';
 import pkg from 'pg';
+import dotenv from 'dotenv';
 const { Pool } = pkg; // This is the correct way to extract Pool from the imported package
-
+dotenv.config()    // cargar las variables de entorno
 const app = express();
 const port = process.env.PORT || 4000;
 
 // Configuración de la conexión a PostgreSQL usando la URL
 const pool = new Pool({
-  connectionString: 'postgresql://arbadev_bbdd_user:arbadev011110@dpg-cvr83jogjchc73bp9a00-a.oregon-postgres.render.com/arbadev_bbdd',
+  connectionString: 'postgresql://arbadev_bbdd_user:'+process.env.DB_PASSWORD+process.env.DB_URL,
   ssl: {
     rejectUnauthorized: false, // Esto es necesario para evitar errores de certificado en entornos de producción
   },
