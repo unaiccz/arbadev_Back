@@ -3,7 +3,7 @@ import cors from 'cors';
 import pkg from 'pg';
 import dotenv from 'dotenv';
 const { Pool } = pkg; // This is the correct way to extract Pool from the imported package
-dotenv.config()    // cargar las variables de entorno
+dotenv.config() 
 const app = express();
 const port = process.env.PORT || 4000;
 
@@ -11,7 +11,7 @@ const port = process.env.PORT || 4000;
 const pool = new Pool({
   connectionString: 'postgresql://arbadev_bbdd_user:'+process.env.DB_PASSWORD+process.env.DB_URL,
   ssl: {
-    rejectUnauthorized: false, // Esto es necesario para evitar errores de certificado en entornos de producción
+    rejectUnauthorized: false, // Evitar errores con los certificados en produccion
   },
 });
 
@@ -30,7 +30,7 @@ app.get('/db', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-  res.send({ ok: true, res: 'Hello World!' });
+  res.send({ ok: true, res: 'Hello Arba Dev!' });
 });
 
 app.listen(port, () => {
