@@ -26,9 +26,17 @@ app.use(express.json());
 const persistentPath = '/mnt/data/uploads';
 const tempPath = '/mnt/data/temp';
 
+// Asegúrate de que las carpetas existan y tengan los permisos correctos
 [persistentPath, tempPath].forEach(dir => {
   if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
+    fs.mkdirSync(dir, { recursive: true, mode: 0o755 }); // Crear con permisos 755
+  } else {
+    try {
+      fs.chmodSync(dir, 0o755); // Cambiar permisos si ya existen
+      console.log(`Permisos de ${dir} ajustados correctamente`);
+    } catch (err) {
+      console.error(`Error al cambiar permisos de ${dir}:`, err);
+    }
   }
 });
 
