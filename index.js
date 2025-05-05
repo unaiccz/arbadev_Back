@@ -103,7 +103,7 @@ app.get('/db', async (req, res) => {
     console.error('Error al conectar con la base de datos:', error);
     res.status(500).send({ ok: false, error: 'Error al conectar con la base de datos' });
   }
-});*/
+});`
 
 // 🔸 Ruta básica
 app.get('/', (req, res) => {
