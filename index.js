@@ -14,14 +14,14 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 // PostgreSQL
-
 const pool = new Pool({
-  connectionString: 'postgresql://arbadev:S8d9EamPy7BXeU9PSBfpm6weSdLPMMOq@dpg-d0ccvg6uk2gs73f66s10-a.oregon-postgres.render.com/incidents_data',
+  connectionString: `postgresql://arbadev_bbdd_user:${process.env.DB_PASSWORD}@${process.env.DB_URL}`,
   ssl: { rejectUnauthorized: false },
 });
 
 app.use(cors());
 app.use(express.json());
+
 // 🔸 Configurar rutas para carpetas persistentes en Render
 const persistentPath = '/mnt/data/uploads';
 const tempPath = '/mnt/data/temp';
@@ -29,10 +29,10 @@ const tempPath = '/mnt/data/temp';
 // Asegúrate de que las carpetas existan y tengan los permisos correctos
 [persistentPath, tempPath].forEach(dir => {
   if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true, mode: 0o755 }); // Crear con permisos 755
+    fs.mkdirSync(dir, { recursive: true, mode: 0o755 });
   } else {
     try {
-      fs.chmodSync(dir, 0o755); // Cambiar permisos si ya existen
+      fs.chmodSync(dir, 0o755);
       console.log(`Permisos de ${dir} ajustados correctamente`);
     } catch (err) {
       console.error(`Error al cambiar permisos de ${dir}:`, err);
@@ -103,7 +103,7 @@ app.get('/db', async (req, res) => {
     console.error('Error al conectar con la base de datos:', error);
     res.status(500).send({ ok: false, error: 'Error al conectar con la base de datos' });
   }
-});`
+});
 
 // 🔸 Ruta básica
 app.get('/', (req, res) => {
