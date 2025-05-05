@@ -19,7 +19,7 @@ const pool = new Pool({
   connectionString: 'postgresql://arbadev_bbdd_user:' + process.env.DB_PASSWORD + process.env.DB_URL,
   ssl: { rejectUnauthorized: false },
 });
-*/
+
 app.use(cors());
 app.use(express.json());
 // 🔸 Configurar rutas para carpetas persistentes en Render
