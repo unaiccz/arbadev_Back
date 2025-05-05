@@ -15,7 +15,7 @@ const port = process.env.PORT || 4000;
 
 // PostgreSQL
 const pool = new Pool({
-  connectionString: `postgresql://arbadev_bbdd_user:${process.env.DB_PASSWORD}@${process.env.DB_URL}`,
+  connectionString: `postgresql://arbadev:${process.env.DB_PASSWORD}@${process.env.DB_URL}`,
   ssl: { rejectUnauthorized: false },
 });
 
