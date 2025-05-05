@@ -14,7 +14,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 // PostgreSQL
-/*
+
 const pool = new Pool({
   connectionString: 'postgresql://arbadev_bbdd_user:' + process.env.DB_PASSWORD + process.env.DB_URL,
   ssl: { rejectUnauthorized: false },
@@ -22,11 +22,10 @@ const pool = new Pool({
 */
 app.use(cors());
 app.use(express.json());
-
 // 🔸 Configurar rutas para carpetas persistentes en Render
-//const persistentPath = '/mnt/data/uploads';
-//const tempPath = '/mnt/data/temp';
-/*
+const persistentPath = '/mnt/data/uploads';
+const tempPath = '/mnt/data/temp';
+
 // Asegúrate de que las carpetas existan y tengan los permisos correctos
 [persistentPath, tempPath].forEach(dir => {
   if (!fs.existsSync(dir)) {
