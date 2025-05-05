@@ -23,8 +23,8 @@ app.use(cors());
 app.use(express.json());
 
 // 🔸 Configurar rutas para carpetas persistentes en Render
-const persistentPath = '/mnt/data/uploads';
-const tempPath = '/mnt/data/temp';
+//const persistentPath = '/mnt/data/uploads';
+//const tempPath = '/mnt/data/temp';
 
 // Asegúrate de que las carpetas existan y tengan los permisos correctos
 [persistentPath, tempPath].forEach(dir => {
